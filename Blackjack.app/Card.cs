@@ -28,11 +28,10 @@
 
     public class Card
     {
-
         public Card(Suit s, Rank r)
         {
-            this.Suit = s;
-            this.Rank = r;
+            Suit = s;
+            Rank = r;
         }
 
         public bool IsVisible { get; set; } = true;
@@ -59,12 +58,27 @@
 
         public override string ToString()
         {
-            if (this.IsVisible)
-            return $"{this.Rank} {this.Suit}";
-            else
+            var suitCharacter = "";
+            switch (Suit)
             {
-                return "XXXXX   XXXXXX ";
+                case Suit.Hearts:
+                    suitCharacter = "H"; //Find characters online
+                    break;
+                case Suit.Clubs:
+                    suitCharacter = "C";
+                    break;
+                case Suit.Diamonds:
+                    suitCharacter = "D";
+                    break;
+                case Suit.Spades:
+                    suitCharacter = "S";
+                    break;
             }
+
+            if (IsVisible)
+
+                return $"{Rank} {suitCharacter}";
+            return "XXXXX   XXXXXX ";
         }
     }
 }

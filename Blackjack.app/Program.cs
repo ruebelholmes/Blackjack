@@ -71,7 +71,10 @@ namespace Blackjack.app
 
             //show dealers cards
             dealer.Hand.ForEach(x=>x.IsVisible = true);
-           
+            Console.Clear();
+            DisplayHand(player);
+            DisplayHand(dealer);
+
             //Dealers Turn
             while (true)
             {
