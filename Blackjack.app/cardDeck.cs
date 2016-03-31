@@ -6,37 +6,40 @@ using System.Threading.Tasks;
 
 namespace Blackjack.app
 {
-    public class Deck
+    public class Deck : Stack<Card>
     {
-        public enum Suit
-        {
-            Hearts = 0,
-            Clubs = 1,
-            Diamonds = 2,
-            Spades = 3
-        }
-        public enum Rank
 
+        public Deck(IEnumerable<Card> cards) : base(cards)
         {
-            Deuce = 2,
-            Three = 3,
-            Four = 4,
-            Five = 5,
-            Six = 6,
-            Seven = 7,
-            Eight = 8,
-            Nine = 9,
-            Ten = 10,
-            Jack = 11,
-            Queen = 12,
-            King = 13,
-            Ace = 1
+            
         }
         
         //Make deck
         //assign values to each card
         //figure out how to 
 
+        public Card Deal()
+        {
+
+            return this.Pop();
+        }
+
+        public static Deck BuildDeck()
+        {
+            var cards = new List<Card>();
+
+            foreach (Rank r in Enum.GetValues(typeof(Rank)))
+            {
+                foreach (Suit s in Enum.GetValues(typeof(Suit)))
+                {
+                    cards.Add(new Card(s, r));
+                }
+            }
+
+            //sort the deck. NOTICE that the variable 'deck' is unchanged, but 'randomDeck' is the actual sorted deck.
+            return new Deck(cards.OrderBy(x => Guid.NewGuid()).ToList());
+
+        }
     }
 }
 
